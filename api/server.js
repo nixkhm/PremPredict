@@ -1,19 +1,24 @@
 import express from "express";
 import cors from "cors";
 import axios from "axios";
+import { config } from "dotenv";
+
+config();
 
 const app = express();
 app.use(cors());
 
-//fixtures API endpoint
+/*
+Teams API endpoint, returns JSON of Fixture information about each team, the home and away team
+*/
 app.get("/teams", (req, res) => {
   const options = {
     method: "GET",
-    url: "https://api-football-v1.p.rapidapi.com/v3/fixtures",
+    url: process.env.APIURL,
     params: { league: "39", next: "10" },
     headers: {
-      "X-RapidAPI-Key": "921f9a1116mshe0f08db031ed79ep168afcjsna33577b8a792",
-      "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+      "X-RapidAPI-Key": process.env.APIKEY,
+      "X-RapidAPI-Host": process.env.APIHOST,
     },
   };
   axios
@@ -28,7 +33,6 @@ app.get("/teams", (req, res) => {
     });
 });
 
-const PORT = 8000;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server listening on port ${process.env.PORT}`);
 });
