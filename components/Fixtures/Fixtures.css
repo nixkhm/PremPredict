@@ -1,0 +1,52 @@
+@media (max-width: 768px) {
+    .item {
+        flex-basis: 40%;
+    }
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+    flex-basis: 20%;
+    margin: 10px;
+    text-align: center;
+    list-style: none;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.team {
+    width: 60px;
+    height: 50px;
+    padding: 5px;
+    font-size: 30px;
+    text-align: center;
+    margin: 10px;
+}
+
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+button:hover {
+    border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
