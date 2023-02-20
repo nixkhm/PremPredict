@@ -79,6 +79,8 @@ to allow the user to modify their score
     }
   };
 
+  const preventNegative = (e: React.ChangeEvent<HTMLInputElement>) => {};
+
   return (
     <div className="Fixtures">
       <h1>Premier League Predictor</h1>
@@ -97,14 +99,14 @@ to allow the user to modify their score
                     <input
                       className="team"
                       type="number"
-                      value={homeScore[index]}
+                      value={Math.max(0, homeScore[index])}
                       onChange={(e) => handleHomeScoreChange(e, index)}
                       disabled={isClicked[index]}
                     />
                     <input
                       className="team"
                       type="number"
-                      value={awayScore[index]}
+                      value={Math.max(0, awayScore[index])}
                       onChange={(e) => handleAwayScoreChange(e, index)}
                       disabled={isClicked[index]}
                     />
@@ -122,17 +124,18 @@ to allow the user to modify their score
                   <input
                     className="team"
                     type="number"
-                    value={homeScore[index]}
+                    value={Math.max(0, homeScore[index])}
                     onChange={(e) => handleHomeScoreChange(e, index)}
                     disabled={isClicked[index]}
                   />
                   <input
                     className="team"
                     type="number"
-                    value={awayScore[index]}
+                    value={Math.max(0, awayScore[index])}
                     onChange={(e) => handleAwayScoreChange(e, index)}
                     disabled={isClicked[index]}
                   />
+
                   <button onClick={() => handleClick(index)}>Submit</button>
                 </form>
               </div>
