@@ -1,4 +1,17 @@
-ul{
-    display: flex;
+table {
+    border: 1px solid white;
     width: 100%;
 }
+td {
+    padding: 5px;
+    font-size: 20px;
+}
+
+th{
+    font-size: 25px;
+}
+
+
+
+
+

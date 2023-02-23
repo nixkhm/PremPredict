@@ -52,7 +52,6 @@ app.get("/standings", (req, res) => {
       const standings = response.data.response.map((team) =>
         team.league.standings[0].map((club) => club)
       );
-      console.log(standings);
       res.send(standings);
     })
     .catch((error) => {
