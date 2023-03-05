@@ -43,7 +43,8 @@ Updates the state of each home score when entered in the input tag
     index: number
   ) => {
     const newHomeScore = [...homeScore];
-    newHomeScore[index] = String(event.target.value);
+    newHomeScore[index] = event.target.valueAsNumber;
+    if (newHomeScore[index] < 0) newHomeScore[index] = 0;
     setHomeScore(newHomeScore);
   };
 
@@ -55,7 +56,8 @@ Updates the state of each away score when entered in the input tag
     index: number
   ) => {
     const newAwayScore = [...awayScore];
-    newAwayScore[index] = String(event.target.value);
+    newAwayScore[index] = event.target.valueAsNumber;
+    if (newAwayScore[index] < 0) newAwayScore[index] = 0;
     setAwayScore(newAwayScore);
   };
 
@@ -79,17 +81,49 @@ to allow the user to modify their score
     }
   };
 
-  const preventNegative = (e: React.ChangeEvent<HTMLInputElement>) => {};
+  //const preventNegative = (e: React.ChangeEvent<HTMLInputElement>) => {};
 
   return (
-    <div className="Fixtures">
-      <h1>Premier League Predictor</h1>
-      <ul>
-        {fixtures.map((fixture, index) => (
-          <li key={index}>
-            <div>{fixture}</div>
-            {isClicked[index] ? (
-              <div>
+    <div>
+      <div className="fixturesTitle">
+        <h1>Premier League Predictor</h1>
+      </div>
+      <div className="fixtures">
+        <ul>
+          {fixtures.map((fixture, index) => (
+            <li key={index}>
+              <div className="fixture">{fixture}</div>
+              {isClicked[index] ? (
+                <div>
+                  <div>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                      }}
+                    >
+                      <input
+                        className="team"
+                        type="number"
+                        inputMode="numeric"
+                        pattern="[0-9]+"
+                        value={homeScore[index]}
+                        onChange={(e) => handleHomeScoreChange(e, index)}
+                        disabled={isClicked[index]}
+                      />
+                      <input
+                        className="team"
+                        type="number"
+                        inputMode="numeric"
+                        pattern="[0-9]+"
+                        value={awayScore[index]}
+                        onChange={(e) => handleAwayScoreChange(e, index)}
+                        disabled={isClicked[index]}
+                      />
+                    </form>
+                  </div>
+                  <button onClick={() => handleClick(index)}>Modify</button>
+                </div>
+              ) : (
                 <div>
                   <form
                     onSubmit={(e) => {
@@ -99,50 +133,30 @@ to allow the user to modify their score
                     <input
                       className="team"
                       type="number"
-                      value={Math.max(0, homeScore[index])}
+                      inputMode="numeric"
+                      pattern="[0-9]+"
+                      value={homeScore[index]}
                       onChange={(e) => handleHomeScoreChange(e, index)}
                       disabled={isClicked[index]}
                     />
                     <input
                       className="team"
                       type="number"
-                      value={Math.max(0, awayScore[index])}
+                      inputMode="numeric"
+                      pattern="[0-9]+"
+                      value={awayScore[index]}
                       onChange={(e) => handleAwayScoreChange(e, index)}
                       disabled={isClicked[index]}
                     />
+
+                    <button onClick={() => handleClick(index)}>Submit</button>
                   </form>
                 </div>
-                <button onClick={() => handleClick(index)}>Modify</button>
-              </div>
-            ) : (
-              <div>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  <input
-                    className="team"
-                    type="number"
-                    value={Math.max(0, homeScore[index])}
-                    onChange={(e) => handleHomeScoreChange(e, index)}
-                    disabled={isClicked[index]}
-                  />
-                  <input
-                    className="team"
-                    type="number"
-                    value={Math.max(0, awayScore[index])}
-                    onChange={(e) => handleAwayScoreChange(e, index)}
-                    disabled={isClicked[index]}
-                  />
-
-                  <button onClick={() => handleClick(index)}>Submit</button>
-                </form>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

@@ -5,8 +5,8 @@ import Standings from "../components/Standings/Standings";
 function App() {
   return (
     <div className="App">
-      <Standings />
       <Fixtures />
+      <Standings />
     </div>
   );
 }

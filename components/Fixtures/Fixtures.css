@@ -4,24 +4,48 @@
     }
 }
 
-ul {
+.fixturesTitle h1 {
+    font-size: 60px;
+    font-family: sans-serif;
+}
+
+.fixturesTitle h1 {
+    background-color: #39003d;
+    color: #ffffff;
+    text-align: center;
+    display: block;
+    padding: 15px;
+    margin: 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.fixtures{
+    margin-top: 7%;
+    font-size: 18px;
+    width: 100%;
+}
+
+.fixtures ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
-li {
+.fixtures li {
     flex-basis: 20%;
     margin: 10px;
     text-align: center;
     list-style: none;
     border: 1px solid white;
-    border-radius: 15px;
     padding: 20px;
 }
 
-.team {
+.fixtures input {
     width: 60px;
     height: 50px;
     padding: 5px;
@@ -30,7 +54,7 @@ li {
     margin: 10px;
 }
 
-button {
+.fixtures button {
     border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
@@ -42,11 +66,12 @@ button {
     transition: border-color 0.25s;
 }
 
-button:hover {
+.fixtures button:hover {
     border-color: #646cff;
 }
 
-button:focus,
+.fixtures button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
+
