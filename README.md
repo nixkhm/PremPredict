@@ -4,4 +4,4 @@
 
 # Features
 * API Routing to return information about the fixtures
-* User account creation where previous predictions can be viewed and points can be added for correct predictions
+* React state to manage input and dynamically updating state with real-time data
